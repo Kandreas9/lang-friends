@@ -4,7 +4,7 @@ const nextConfig = {
         appDir: true,
     },
     output: "standalone",
-    webpackDevMiddleware: (config) => {
+    webpack: (config) => {
         config.watchOptions = {
             poll: 1000,
             aggregateTimeout: 300,

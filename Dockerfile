@@ -1,17 +1,15 @@
 FROM node:16-alpine
 
-#Creates directories
-RUN mkdir -p /usr/src/app
-
 RUN npm i -g pnpm
 
-WORKDIR /usr/src/app
+RUN mkdir /app
+WORKDIR /app
 
-COPY package.json pnpm-lock.yaml /usr/src/app
+COPY package.json pnpm-lock.yaml ./
 
-RUN pnpm install --frozen-lockfile --prod
+RUN pnpm install
 
-COPY . /usr/src/app
+COPY . .
 
 EXPOSE 3000
 

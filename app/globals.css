@@ -1,3 +1,94 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    height: 100vh;
+    background: linear-gradient(
+            135.37deg,
+            rgba(0, 0, 0, 0.4) 4.29%,
+            rgba(255, 255, 255, 0.4) 95.6%
+        ),
+        #eaecf0;
+    background-blend-mode: soft-light, normal;
+}
+
+neo-main {
+    background: linear-gradient(
+            135deg,
+            rgba(0, 0, 0, 0.4) 0%,
+            rgba(255, 255, 255, 0.4) 100%
+        ),
+        #ebecf0;
+    background-blend-mode: soft-light, normal;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    box-shadow: -16px -16px 32px #fafbff, 16px 16px 32px #a6abbd;
+}
+
+.neo-secondary {
+    background: linear-gradient(
+            135.37deg,
+            rgba(0, 0, 0, 0.4) 4.29%,
+            rgba(255, 255, 255, 0.4) 95.6%
+        ),
+        #eaecf0;
+    background-blend-mode: soft-light, normal;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: -9px -9px 16px #fafbff, 9px 9px 16px #a6abbd;
+}
+
+.neo-inner {
+    background: linear-gradient(
+            135deg,
+            rgba(0, 0, 0, 0.4) 0%,
+            rgba(255, 255, 255, 0.4) 100%
+        ),
+        #ebecf0;
+    background-blend-mode: soft-light, normal;
+
+    border: 2px solid rgba(255, 255, 255, 0.4);
+
+    box-shadow: inset -16px -16px 32px #fafbff, inset 16px 16px 32px #a6abbd;
+    border-radius: 55px;
+}
+
+.neo-green {
+    background: linear-gradient(
+            135.37deg,
+            rgba(0, 0, 0, 0.4) 4.29%,
+            rgba(255, 255, 255, 0.4) 95.6%
+        ),
+        #a0cb99;
+    background-blend-mode: soft-light, normal;
+    box-shadow: -9px -9px 16px #fafbff, 9px 9px 16px #a6abbd;
+}
+
+.neo-burger {
+    background: linear-gradient(
+            317.7deg,
+            rgba(0, 0, 0, 0.4) 0%,
+            rgba(255, 255, 255, 0.4) 105.18%
+        ),
+        #c4c9dc;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    background-blend-mode: soft-light, normal;
+
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.neo-icon-inner {
+    background: linear-gradient(
+            317.7deg,
+            rgba(0, 0, 0, 0.4) 0%,
+            rgba(255, 255, 255, 0.4) 100%
+        ),
+        #c4c9dc;
+    background-blend-mode: soft-light, normal;
+
+    border: 1px solid rgba(255, 255, 255, 0.4);
+
+    box-shadow: inset -1px -1px 1px #fafbff, inset 1px 1px 2px #a6abbd;
+}

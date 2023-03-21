@@ -1,16 +1,19 @@
 version: "3"
 services:
   nextjs:
-    build: .
+    container_name: nextjs
     command: pnpm dev
     ports:
       - "3000:3000"
     depends_on:
       - mariadb
+    build:
+      context: .
+      dockerfile: Dockerfile
     volumes:
-      - .:/usr/src/app
-      - /usr/src/app/node_modules
-      - /usr/src/app/.next
+      - .:/app
+      - /app/node_modules
+      - /app/.next
 
   mariadb:
     image: mariadb
