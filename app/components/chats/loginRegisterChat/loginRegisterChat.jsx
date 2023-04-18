@@ -112,8 +112,8 @@ export default function LoginRegisterChat() {
     };
 
     return (
-        <div className="mx-auto pb-[15px] px-[25px] pt-[35px] neo-main rounded-[35px]">
-            <div className="w-[280px] h-[80%] gap-[1rem] flex flex-col overflow-y-auto p-[1rem]">
+        <div className="mx-auto pb-[15px] px-[25px] flex flex-col pt-[35px] neo-main rounded-[35px]">
+            <div className="w-[280px] flex-none h-[80%] gap-[1rem] flex flex-col overflow-y-auto p-[1rem]">
                 {messages.map((el) => {
                     return (
                         <ChatMessage key={el.text} side={el.side}>
@@ -122,7 +122,7 @@ export default function LoginRegisterChat() {
                     );
                 })}
             </div>
-            <label className="relative h-[20%]">
+            <label className="relative flex-1 h-[100%]">
                 {inputOrder[orderIndex] != "terms" ? (
                     <input
                         value={
@@ -135,7 +135,7 @@ export default function LoginRegisterChat() {
                         onChange={(e) =>
                             handleInputChange(e, inputOrder[orderIndex])
                         }
-                        className="py-[4px] px-[8px] w-full h-[50px] rounded-[55px] neo-inner"
+                        className="py-[4px] px-[8px] w-full h-full rounded-[55px] neo-inner"
                         type={`${
                             inputOrder[orderIndex] === "loginRegister"
                                 ? "text"
@@ -154,7 +154,7 @@ export default function LoginRegisterChat() {
                         onChange={(e) =>
                             handleInputChange(e, inputOrder[orderIndex])
                         }
-                        className="py-[4px] px-[8px] w-full h-[50px] rounded-[55px] neo-inner"
+                        className="py-[4px] px-[8px] w-full h-full rounded-[55px] neo-inner"
                         type={`${
                             inputOrder[orderIndex] === "loginRegister"
                                 ? "text"
@@ -170,7 +170,7 @@ export default function LoginRegisterChat() {
                 )}
                 <button
                     onClick={handleSubmit}
-                    className="flex justify-center items-center w-[30px] h-[30px] rounded-full absolute right-[10px] top-1/2 translate-y-[-50%] neo-secondary"
+                    className="flex justify-center items-center w-[30px] h-[30px] rounded-full absolute right-[20px] top-1/2 translate-y-[-50%] neo-secondary"
                 >
                     <Send></Send>
                 </button>
