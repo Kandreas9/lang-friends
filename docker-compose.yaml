@@ -2,7 +2,7 @@ version: "3"
 services:
   nextjs:
     container_name: nextjs
-    command: pnpm dev
+    command: bash ./wait-for-it.sh mariadb:3306 -- ./push-and-run.sh
     ports:
       - "3000:3000"
     depends_on:

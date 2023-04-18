@@ -5,12 +5,15 @@ RUN npm i -g pnpm
 RUN mkdir /app
 WORKDIR /app
 
+RUN apk add --no-cache --upgrade bash
 COPY package.json pnpm-lock.yaml ./
 
 RUN pnpm install
 
 COPY . .
 
+RUN pnpm exec prisma generate
+
 EXPOSE 3000
 
-CMD pnpm run dev
+CMD bash ./wait-for-it.sh mariadb:3306 -- ./push-and-run.sh

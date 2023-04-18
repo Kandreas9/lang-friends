@@ -1,19 +1,37 @@
+"use client";
+
+import { useSession } from "next-auth/react";
+import { useState } from "react";
 import Image from "next/image";
 
 import america from "../../public/america.svg";
+import { signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function Header() {
-    const isAuth = false;
+    const { push } = useRouter();
+    const { data: session, status } = useSession();
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const handleToggleMenu = (bool) => {
+        setIsMenuOpen(bool);
+    };
 
     return (
-        <header className="flex p-[20px] justify-between">
-            {isAuth ? (
+        <header className="flex max-w-[1440px] mx-auto w-full h-[100px] p-[20px] justify-between">
+            {session?.user ? (
                 <>
-                    <h1 className="text-[32px] text-green-main font-bold">
+                    <h1
+                        onClick={() => push("/")}
+                        className="text-[32px] text-green-main font-bold"
+                    >
                         LangFriends
                     </h1>
 
-                    <button className="w-[50px] h-[50px] rounded-full neo-secondary flex flex-col justify-center items-center gap-[1px]">
+                    <button
+                        onClick={() => handleToggleMenu(true)}
+                        className="w-[50px] h-[50px] rounded-full neo-secondary flex flex-col justify-center items-center gap-[1px]"
+                    >
                         <div className="w-[20px] h-[6px] rounded-[10px] neo-icon-inner"></div>
                         <div className="w-[20px] h-[6px] rounded-[10px] neo-icon-inner"></div>
                         <div className="w-[20px] h-[6px] rounded-[10px] neo-icon-inner"></div>
@@ -25,6 +43,29 @@ export default function Header() {
                     src={america}
                     alt="american flag"
                 ></Image>
+            )}
+
+            {isMenuOpen && (
+                <>
+                    <div
+                        onClick={() => handleToggleMenu(false)}
+                        className="bg-black top-0 left-0 opacity-[.4] w-screen h-screen absolute z-[200]"
+                    ></div>
+                    <div className="h-screen text-center flex flex-col gap-[2rem] p-[4rem] w-[70%] absolute top-0 right-0 bg-neo z-[250]">
+                        <h2 className="text-[2rem] font-bold">Menu</h2>
+
+                        <ul>
+                            <li>
+                                <button
+                                    onClick={() => signOut()}
+                                    className="bg-green-main px-[1rem] py-[.5rem] text-white rounded"
+                                >
+                                    LogOut
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </>
             )}
         </header>
     );

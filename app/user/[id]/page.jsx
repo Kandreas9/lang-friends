@@ -1,0 +1,89 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { useSession } from "next-auth/react";
+
+export default function UserPage({ params }) {
+    const { data: session, status } = useSession();
+    const [user, setUser] = useState(null);
+    const [isFriends, setIsFriends] = useState(false);
+
+    const getById = async () => {
+        const res = await fetch(
+            `http://localhost:3000/api/user/getById/${params.id}`,
+            {
+                cache: "no-store",
+                method: "GET",
+            }
+        );
+
+        const obj = await res.json();
+        setUser(obj.user);
+
+        const res2 = await fetch(
+            `http://localhost:3000/api/user/checkFriends`,
+            {
+                cache: "no-store",
+                method: "POST",
+                body: JSON.stringify({
+                    userId: session.user.id,
+                    potentialFriendsId: obj.user.id,
+                }),
+            }
+        );
+
+        const json = await res2.json();
+
+        if (json.result) {
+            setIsFriends(true);
+        } else {
+            console.log(json);
+        }
+    };
+
+    useEffect(() => {
+        if (session?.user) {
+            getById();
+        }
+    }, [session]);
+
+    const handleLike = async () => {
+        const res = await fetch(`http://localhost:3000/api/user/like`, {
+            cache: "no-store",
+            method: "POST",
+            body: JSON.stringify({ original: session.user, user }),
+        });
+
+        const json = await res.json();
+
+        if (json.result) {
+            setIsFriends(true);
+        }
+    };
+
+    if (status === "loading") {
+        return <p>Loading...</p>;
+    }
+
+    return (
+        <div>
+            {user && (
+                <div className="flex justify-between">
+                    <div>{user.email}</div>
+                    {isFriends ? (
+                        <div className="bg-green-main p-1 rounded-[10px] text-white">
+                            Already Liked
+                        </div>
+                    ) : (
+                        <button
+                            className="bg-green-main p-1 rounded-[10px] text-white"
+                            onClick={handleLike}
+                        >
+                            Like
+                        </button>
+                    )}
+                </div>
+            )}
+        </div>
+    );
+}
