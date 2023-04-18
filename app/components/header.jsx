@@ -8,6 +8,8 @@ import america from "../../public/america.svg";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
+import Link from "next/link";
+
 export default function Header() {
     const { push } = useRouter();
     const { data: session, status } = useSession();
@@ -54,7 +56,13 @@ export default function Header() {
                     <div className="h-screen text-center flex flex-col gap-[2rem] p-[4rem] w-[70%] absolute top-0 right-0 bg-neo z-[250]">
                         <h2 className="text-[2rem] font-bold">Menu</h2>
 
-                        <ul>
+                        <ul className="flex flex-col gap-[2rem]">
+                            <li>
+                                <Link href="/">Home</Link>
+                            </li>
+                            <li>
+                                <Link href="/chat">Chat</Link>
+                            </li>
                             <li>
                                 <button
                                     onClick={() => signOut()}

@@ -43,7 +43,7 @@ export default function Home() {
     }
 
     return (
-        <div className="h-[calc(100vh-100px)] overflow-auto">
+        <div className="h-full overflow-auto">
             {session?.user && recommendedUsers ? (
                 <ul
                     style={{ overflow: "initial" }}
