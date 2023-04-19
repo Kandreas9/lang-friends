@@ -58,10 +58,20 @@ export default function Header() {
 
                         <ul className="flex flex-col gap-[2rem]">
                             <li>
-                                <Link href="/">Home</Link>
+                                <Link
+                                    onClick={() => handleToggleMenu(false)}
+                                    href="/"
+                                >
+                                    Home
+                                </Link>
                             </li>
                             <li>
-                                <Link href="/chat">Chat</Link>
+                                <Link
+                                    onClick={() => handleToggleMenu(false)}
+                                    href={`/friend-chat`}
+                                >
+                                    Chat
+                                </Link>
                             </li>
                             <li>
                                 <button

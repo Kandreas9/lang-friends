@@ -41,6 +41,7 @@ model Message {
   id            String    @default(cuid()) @id
   user_id       String
   message       String
+  side          String
   user          User      @relation(name: "userMessages", fields: [user_id], references: [id])
   createdAt     DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @updatedAt @map(name: "updated_at")

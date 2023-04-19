@@ -25,7 +25,7 @@ export async function POST(req) {
 
         return new Response(
             JSON.stringify({
-                message: "User is liked!",
+                message: "User is not liked!",
                 ok: false,
             }),
             {

@@ -16,4 +16,6 @@ RUN pnpm exec prisma generate
 
 EXPOSE 3000
 
-CMD bash ./wait-for-it.sh mariadb:3306 -- ./push-and-run.sh
+CMD bash ./wait-for-it.sh db:3306 -- ./push-and-run.sh
+
+
