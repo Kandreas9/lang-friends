@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
-import Head from "next/head";
 
 export default function UserPage({ params }) {
     const { data: session, status } = useSession();
@@ -62,14 +61,6 @@ export default function UserPage({ params }) {
 
     return (
         <div>
-            <Head>
-                <title>LangFriends - User Profile</title>
-                <meta
-                    name="description"
-                    content="Like friends so you can chat."
-                />
-            </Head>
-
             {user && (
                 <div className="flex justify-between">
                     <div>{user.email}</div>

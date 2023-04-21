@@ -6,7 +6,6 @@ import { useSession } from "next-auth/react";
 import FriendSidebar from "@/components/friendSidebar";
 import { io } from "socket.io-client";
 import ChatMessage from "@/components/chats/chatMessage";
-import Head from "next/head";
 
 let socket;
 
@@ -121,14 +120,6 @@ export default function FriendChat() {
 
     return (
         <div className="mx-auto h-full pb-[15px] px-[25px] flex flex-col pt-[35px] neo-main rounded-[35px] relative">
-            <Head>
-                <title>LangFriends - Chat</title>
-                <meta
-                    name="description"
-                    content="Chat with your like friends."
-                />
-            </Head>
-
             <div className="w-[280px] flex-none h-[85%] gap-[1rem] flex flex-col overflow-y-auto p-[1rem]">
                 {messages.map((el, index) => {
                     return (

@@ -7,7 +7,6 @@ import { redirect } from "next/navigation";
 import Modal from "@/components/modal";
 import CustomInput from "@/components/customInput";
 import { signIn, signOut } from "next-auth/react";
-import Head from "next/head";
 
 export default function Profile() {
     const { data: session, status } = useSession();
@@ -73,14 +72,6 @@ export default function Profile() {
     if (session?.user) {
         return (
             <div>
-                <Head>
-                    <title>LangFriends - Profile Page</title>
-                    <meta
-                        name="description"
-                        content="Update your profile information."
-                    />
-                </Head>
-
                 <div className="flex justify-between">
                     <div>{session.user.email}</div>
 
