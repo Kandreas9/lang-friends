@@ -44,7 +44,7 @@ export default function Home() {
     }
 
     return (
-        <div className="h-full overflow-auto">
+        <div style={{ overflow: "initial" }} className="h-full">
             <Head>
                 <title>LangFriends - Homepage</title>
                 <meta
