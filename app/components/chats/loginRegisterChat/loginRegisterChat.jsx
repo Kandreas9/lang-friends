@@ -86,7 +86,7 @@ export default function LoginRegisterChat() {
                     password: values.password,
                 });
             } else if (type === "register" && values.terms) {
-                const res = await fetch("http://localhost:3000/api/register", {
+                const res = await fetch("/api/register", {
                     cache: "no-store",
                     method: "POST",
                     body: JSON.stringify(values),

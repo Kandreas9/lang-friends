@@ -5,13 +5,14 @@ import { useSession } from "next-auth/react";
 import LoginRegisterChat from "./components/chats/loginRegisterChat/loginRegisterChat";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Head from "next/head";
 
 export default function Home() {
     const { data: session, status } = useSession();
     const [recommendedUsers, setRecommendedUsers] = useState(null);
 
     const getAll = async () => {
-        const res = await fetch("http://localhost:3000/api/user/getAll", {
+        const res = await fetch("/api/user/getAll", {
             cache: "no-store",
             method: "GET",
         });
@@ -44,6 +45,14 @@ export default function Home() {
 
     return (
         <div className="h-full overflow-auto">
+            <Head>
+                <title>LangFriends - Homepage</title>
+                <meta
+                    name="description"
+                    content="Making the world a friendlier place, one language at a time."
+                />
+            </Head>
+
             {session?.user && recommendedUsers ? (
                 <ul
                     style={{ overflow: "initial" }}

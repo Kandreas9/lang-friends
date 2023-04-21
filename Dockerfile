@@ -14,6 +14,9 @@ COPY . .
 
 RUN pnpm exec prisma generate
 
+RUN chmod +x ./push-and-run.sh
+RUN chmod +x ./wait-for-it.sh
+
 EXPOSE 3000
 
 CMD bash ./wait-for-it.sh db:3306 -- ./push-and-run.sh

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
+import Head from "next/head";
 
 export default function UserPage({ params }) {
     const { data: session, status } = useSession();
@@ -9,28 +10,22 @@ export default function UserPage({ params }) {
     const [isFriends, setIsFriends] = useState(false);
 
     const getById = async () => {
-        const res = await fetch(
-            `http://localhost:3000/api/user/getById/${params.id}`,
-            {
-                cache: "no-store",
-                method: "GET",
-            }
-        );
+        const res = await fetch(`/api/user/getById/${params.id}`, {
+            cache: "no-store",
+            method: "GET",
+        });
 
         const obj = await res.json();
         setUser(obj.user);
 
-        const res2 = await fetch(
-            `http://localhost:3000/api/user/checkFriends`,
-            {
-                cache: "no-store",
-                method: "POST",
-                body: JSON.stringify({
-                    userId: session.user.id,
-                    potentialFriendsId: obj.user.id,
-                }),
-            }
-        );
+        const res2 = await fetch(`/api/user/checkFriends`, {
+            cache: "no-store",
+            method: "POST",
+            body: JSON.stringify({
+                userId: session.user.id,
+                potentialFriendsId: obj.user.id,
+            }),
+        });
 
         const json = await res2.json();
 
@@ -48,7 +43,7 @@ export default function UserPage({ params }) {
     }, [session]);
 
     const handleLike = async () => {
-        const res = await fetch(`http://localhost:3000/api/user/like`, {
+        const res = await fetch(`/api/user/like`, {
             cache: "no-store",
             method: "POST",
             body: JSON.stringify({ original: session.user, user }),
@@ -67,6 +62,14 @@ export default function UserPage({ params }) {
 
     return (
         <div>
+            <Head>
+                <title>LangFriends - User Profile</title>
+                <meta
+                    name="description"
+                    content="Like friends so you can chat."
+                />
+            </Head>
+
             {user && (
                 <div className="flex justify-between">
                     <div>{user.email}</div>

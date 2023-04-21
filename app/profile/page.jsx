@@ -2,14 +2,14 @@
 
 import { useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { redirect } from "next/navigation";
 
 import Modal from "@/components/modal";
 import CustomInput from "@/components/customInput";
 import { signIn, signOut } from "next-auth/react";
+import Head from "next/head";
 
 export default function Profile() {
-    const { push } = useRouter();
     const { data: session, status } = useSession();
     const [values, setValues] = useState({
         email: "",
@@ -47,7 +47,7 @@ export default function Profile() {
         e.preventDefault();
 
         try {
-            const res = await fetch("http://localhost:3000/api/user/update", {
+            const res = await fetch("/api/user/update", {
                 cache: "no-store",
                 method: "POST",
                 body: JSON.stringify({
@@ -60,7 +60,7 @@ export default function Profile() {
 
             closeModal();
             signOut();
-            push("/");
+            redirect("/");
         } catch (err) {
             console.log(err.message);
         }
@@ -73,6 +73,14 @@ export default function Profile() {
     if (session?.user) {
         return (
             <div>
+                <Head>
+                    <title>LangFriends - Profile Page</title>
+                    <meta
+                        name="description"
+                        content="Update your profile information."
+                    />
+                </Head>
+
                 <div className="flex justify-between">
                     <div>{session.user.email}</div>
 

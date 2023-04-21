@@ -14,7 +14,7 @@ export default async (req, res) => {
         const io = new Server(httpServer, {
             path: "/api/socketio",
             cors: {
-                origin: "http://localhost:3000",
+                origin: process.env.ORIGIN,
                 methods: ["GET", "POST"],
             },
         });

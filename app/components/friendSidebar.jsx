@@ -8,13 +8,10 @@ export default function FriendSidebar({
     const [friendInfo, setFriendInfo] = useState(null);
 
     const getFriendInfo = async () => {
-        const res = await fetch(
-            `http://localhost:3000/api/user/getById/${friend.friend_id}`,
-            {
-                cache: "no-store",
-                method: "GET",
-            }
-        );
+        const res = await fetch(`/api/user/getById/${friend.friend_id}`, {
+            cache: "no-store",
+            method: "GET",
+        });
 
         const obj = await res.json();
 
