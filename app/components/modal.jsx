@@ -1,11 +1,6 @@
 import { createPortal } from "react-dom";
 
 export default function Modal({ children, closeModal }) {
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        console.log("test");
-    };
     return (
         <>
             {createPortal(

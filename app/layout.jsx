@@ -7,6 +7,9 @@ import Header from "./components/header";
 export default function RootLayout({ children }) {
     return (
         <html lang="en">
+            <head>
+                <link rel="icon" type="image/x-icon" href="logo.png" />
+            </head>
             <body className="flex flex-col">
                 <SessionProvider>
                     <Header></Header>
