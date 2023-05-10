@@ -97,7 +97,7 @@ export default function LoginRegisterChat() {
                     const result = await signIn("credentials", {
                         redirect: false,
                         email: json.result.email,
-                        password: json.result.password,
+                        password: values.password,
                     });
                 } else {
                     setMessages([
