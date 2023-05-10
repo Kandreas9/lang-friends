@@ -12,8 +12,9 @@ export async function POST(req) {
                 email,
             },
             select: {
-                name: true,
                 email: true,
+                langs: true,
+                city: true,
                 password: false,
             },
         });
@@ -28,8 +29,9 @@ export async function POST(req) {
                     password: hashedPassword,
                 },
                 select: {
-                    name: true,
                     email: true,
+                    langs: true,
+                    city: true,
                     password: false,
                 },
             });

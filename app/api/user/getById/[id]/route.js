@@ -12,8 +12,9 @@ export async function GET({ nextUrl }) {
                 id,
             },
             select: {
-                name: true,
                 email: true,
+                langs: true,
+                city: true,
                 password: false,
             },
         });

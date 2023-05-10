@@ -16,8 +16,9 @@ export async function POST(req) {
                     city,
                 },
                 select: {
-                    name: true,
                     email: true,
+                    langs: true,
+                    city: true,
                     password: false,
                 },
             });
