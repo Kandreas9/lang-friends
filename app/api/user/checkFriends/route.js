@@ -16,8 +16,6 @@ export async function POST(req) {
                 return friend.friend_id === potentialFriendsId;
             });
 
-            console.log(isFriends);
-
             if (isFriends.length === 1) {
                 return NextResponse.json({ result: isFriends[0] });
             }

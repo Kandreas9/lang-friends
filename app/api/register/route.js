@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 
+import { hash } from "argon2";
+
 export async function POST(req) {
     const { name, email, password } = await req.json();
 
@@ -9,14 +11,26 @@ export async function POST(req) {
             where: {
                 email,
             },
+            select: {
+                name: true,
+                email: true,
+                password: false,
+            },
         });
 
         if (!user) {
+            const hashedPassword = await hash(password);
+
             const result = await prisma.user.create({
                 data: {
                     name,
                     email,
-                    password,
+                    password: hashedPassword,
+                },
+                select: {
+                    name: true,
+                    email: true,
+                    password: false,
                 },
             });
             return NextResponse.json({ result });

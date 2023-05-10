@@ -15,6 +15,11 @@ export async function POST(req) {
                     langs,
                     city,
                 },
+                select: {
+                    name: true,
+                    email: true,
+                    password: false,
+                },
             });
             return NextResponse.json({ result });
         }

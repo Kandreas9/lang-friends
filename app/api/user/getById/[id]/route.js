@@ -11,6 +11,11 @@ export async function GET({ nextUrl }) {
             where: {
                 id,
             },
+            select: {
+                name: true,
+                email: true,
+                password: false,
+            },
         });
 
         return NextResponse.json({ user });

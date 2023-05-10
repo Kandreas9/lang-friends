@@ -2,6 +2,8 @@ import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import prisma from "@/lib/prisma";
 
+import { verify } from "argon2";
+
 export const authOptions = {
     // Configure one or more authentication providers
     providers: [
@@ -18,10 +20,15 @@ export const authOptions = {
                     const user = await prisma.user.findFirst({
                         where: {
                             email: credentials.email,
-                            password: credentials.password,
                         },
                     });
-                    if (user) {
+
+                    const passCheck = await verify(
+                        user.password,
+                        credentials.password
+                    );
+
+                    if (user && passCheck) {
                         // Any object returned will be saved in `user` property of the JWT
                         return user;
                     } else {
