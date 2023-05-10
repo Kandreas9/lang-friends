@@ -16,6 +16,7 @@ export async function POST(req) {
                     city,
                 },
                 select: {
+                    id: true,
                     email: true,
                     langs: true,
                     city: true,

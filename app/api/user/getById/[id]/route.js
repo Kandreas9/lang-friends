@@ -12,6 +12,7 @@ export async function GET({ nextUrl }) {
                 id,
             },
             select: {
+                id: true,
                 email: true,
                 langs: true,
                 city: true,
