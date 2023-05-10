@@ -19,10 +19,7 @@ export default function Home() {
         const users = await res.json();
 
         const recommended = users.users.filter(
-            (user) =>
-                user.email !== session.user.email &&
-                user.lang === session.user.lang &&
-                user.city === session.user.city
+            (user) => user.email !== session.user.email
         );
 
         setRecommendedUsers(recommended);
